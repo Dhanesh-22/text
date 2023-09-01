@@ -13,6 +13,12 @@
 	}
 }
 
+  
+
+.sw
+{
+	margin-right:9vw;
+}
 *
 {
 	padding:0px;
@@ -41,9 +47,15 @@ width:15vw;
 	color: #000000;
 	background-color: #272841;
 }
-
+.rr
+{
+width: 87vw;
+}
 .a {
 	height: 53px;
+	padding:0px;
+	width:83vw;
+
 }
 .u
 {

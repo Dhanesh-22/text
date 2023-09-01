@@ -1,7 +1,0 @@
-[*.jsx, *.js]
-indent_style = space
-indent_size = 4
-
-[*.html, *.css]
-indent_style = space
-indent_size = 4

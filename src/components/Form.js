@@ -90,7 +90,7 @@ export default function Form(props) {
 	});
 	const [ftext, setFText] = useState();
 	const [rtext, setRText] = useState();
-	const [matches, setMatchedIndexes] = useState();
+	const [noOfmatch, setNoOfmatch] = useState();
 
 	const fhandle = (event) => {
 		const newText = event.target.value;
@@ -112,43 +112,47 @@ export default function Form(props) {
 				rtext
 			);
 			setText(modifiedText);
-		} catch (error) {
-			
-		}
+		} catch (error) {}
 	};
-
 	const fclick = () => {
 		try {
 			const searchTerm = ftext.toLowerCase();
 			const newMatches = text.match(new RegExp(searchTerm, "gi"));
+			setNoOfmatch(newMatches.length);
+			setAlertText(`Found ${newMatches.length} matching strings`);
+			setShowAlert(true);
+			dismissAlertAfterDelay();
 		} catch (error) {}
 	};
-	var bst = {
-		width: "10px",
-	};
+	
+
+
 	return (
 		<>
-			<div className="a ">
-			{showAlert && <Alert alertText={alertText} />}
-
+			<div class=" container  a">
+				{" "}
+				{showAlert && <Alert alertText={alertText} />}
 			</div>
 
 			<div className=" text-center">
+				<div className="container c flex-grow-1 d-flex r my-1 f i">
+					<textarea
+						className="form-control"
+						id="exampleFormControlTextarea1"
+						rows="7"
+						value={text}
+						onChange={handelonchange}
+						style={props.mode ? dstyles : wstyles}
+					></textarea>
+				</div>
 
-				<textarea
-					className="form-control mx- my-1 "
-					id="exampleFormControlTextarea1"
-					rows="7"
-					value={text}
-					onChange={handelonchange}
-					style={props.mode ? dstyles : wstyles}
-				></textarea>
-
-				<p className="mx-1 my-1">Character Count: {characterCount }   -  Word Count: {wordCount}</p>
+				<p className="mx-1 my-1">
+					Character Count: {characterCount} - Word Count: {wordCount}
+				</p>
 				<p className="mx-1 my-1"></p>
 				<p className="mx-1 my-1">time to read in min: {timeTaken}</p>
 
-				<div class="flex-shrink-0 container c flex-grow-1 d-flex r my-1 f">
+				<div class=" container c flex-grow-1 d-flex r my-1 f">
 					<input
 						style={props.mode ? dstyles : wstyles}
 						type="text"
@@ -173,8 +177,7 @@ export default function Form(props) {
 							onClick={rclick}
 							type="button"
 							class="btn btn-primary mx-1 my-1 d"
-							disabled={!text ||
-								!ftext}
+							disabled={!text || !ftext}
 						>
 							replace
 						</button>
